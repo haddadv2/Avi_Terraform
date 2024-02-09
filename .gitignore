@@ -3,7 +3,7 @@
 .gitignore
 # ignore .terraform
 .terraform*
-terraform.tfstate
+terraform.tfstate*
 
 # ignore terraform env file
 .env*
