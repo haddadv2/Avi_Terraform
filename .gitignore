@@ -7,3 +7,5 @@ terraform.tfstate
 
 # ignore terraform env file
 .env*
+
+terraform.tfstate.backup
