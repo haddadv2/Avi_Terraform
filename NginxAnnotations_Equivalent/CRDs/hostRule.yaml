@@ -1,0 +1,48 @@
+apiVersion: ako.vmware.com/v1beta1
+kind: HostRule
+metadata:
+  name: my-host-rule
+  namespace: red
+spec:
+  virtualhost:
+    fqdn: foo.region1.com # mandatory
+    fqdnType: Exact
+    enableVirtualHost: true
+    tls: # optional
+      sslKeyCertificate:
+        name: avi-ssl-key-cert
+        type: ref
+        alternateCertificate:
+          name: avi-ssl-key-cert2
+          type: ref
+      sslProfile: avi-ssl-profile
+      termination: edge
+    gslb:
+      fqdn: foo.com
+      includeAliases: false
+    httpPolicy: 
+      policySets:
+      - avi-secure-policy-ref
+      overwrite: false
+    datascripts:
+    - avi-datascript-redirect-app1
+    wafPolicy: avi-waf-policy
+    applicationProfile: avi-app-ref
+    icapProfile: 
+    - avi-icap-ref
+    analyticsProfile: avi-analytics-ref
+    errorPageProfile: avi-errorpage-ref
+    analyticsPolicy: # optional
+      fullClientLogs:
+        enabled: true
+        throttle: HIGH
+      logAllHeaders: true
+    tcpSettings:
+      listeners:
+      - port: 8081
+      - port: 6443
+        enableSSL: true
+      loadBalancerIP: 10.10.10.1
+    aliases: # optional
+    -  bar.com
+    -  baz.com

@@ -1,0 +1,50 @@
+resource "avi_applicationprofile" "system_https_profile_1" {
+    type = "APPLICATION_PROFILE_TYPE_HTTP"
+    name = var.http_profile["name"] 
+    tenant_ref = data.avi_tenant.tenanID.id
+    http_profile {
+        connection_multiplexing_enabled= true
+        xff_enabled= true
+        xff_alternate_name= "X-Forwarded-For"
+        hsts_enabled= true
+        hsts_max_age= 365
+        secure_cookie_enabled= true
+        httponly_enabled= true
+        http_to_https= var.http_profile["client-force-ssl-redirect"]
+        server_side_redirect_to_https= var.http_profile["backend-force-ssl-redirect"]
+        x_forwarded_proto_enabled= true
+        post_accept_timeout= 30000
+        client_header_timeout= var.http_profile["header-proxy-send-timeout"]
+        client_body_timeout= var.http_profile["body-proxy-send-timeout"]
+        keepalive_timeout= 30000
+        client_max_header_size= 12
+        client_max_request_size= 48
+        client_max_body_size= var.http_profile["proxy-body-size"]
+        max_rps_unknown_uri= 0
+        max_rps_cip= 0
+        max_rps_uri= 0
+        max_rps_cip_uri= 0
+        ssl_client_certificate_mode= "SSL_CLIENT_CERTIFICATE_NONE"
+        websockets_enabled= true
+        max_rps_unknown_cip= 0
+        max_bad_rps_cip= 0
+        max_bad_rps_uri= 0
+        max_bad_rps_cip_uri= 0
+        keepalive_header= false
+        use_app_keepalive_timeout= false
+        allow_dots_in_header_name= false
+        disable_keepalive_posts_msie6= true
+        enable_request_body_buffering= false
+        enable_fire_and_forget= false
+        max_response_headers_size= 48
+        respond_with_100_continue= true
+        hsts_subdomains_enabled= true
+        enable_request_body_metrics= false
+        fwd_close_hdr_for_bound_connections= true
+        max_keepalive_requests= 100
+        disable_sni_hostname_check= false
+        reset_conn_http_on_ssl_port= false
+        http_upstream_buffer_size= 0
+        enable_chunk_merge= true
+        }
+}

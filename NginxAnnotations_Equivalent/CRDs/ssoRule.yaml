@@ -1,0 +1,30 @@
+apiVersion: ako.vmware.com/v1alpha2
+kind: SSORule
+metadata:
+  name: my-ssorule
+  namespace: default
+spec:
+  fqdn: my-ssorule.test.com
+  oauthVsConfig:
+    cookieName: OAUTH_XYZ
+    cookieTimeout: 120
+    logoutURI: https://my-ssorule.test.com/oauth/logout
+    oauthSettings:
+    - appSettings:
+        clientID: my-client-id
+        clientSecret: my-oauth-secret
+        oidcConfig:
+          oidcEnable: true
+          profile: true
+          userinfo: true
+        scopes: ["scope1"]
+      authProfileRef: okta-oauth
+      resourceServer:
+        accessType: ACCESS_TOKEN_TYPE_OPAQUE
+        introspectionDataTimeout: 60
+        opaqueTokenParams:
+          serverID: my-server-id
+          serverSecret: my-oauth-secret
+    redirectURI: https://my-ssorule.test.com/oauth/callback
+    postLogoutRedirectURI: https://my-ssorule.test.com/oauth/postLogoutRedirectURI
+  ssoPolicyRef: oauth

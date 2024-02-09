@@ -1,0 +1,30 @@
+apiVersion: ako.vmware.com/v1beta1
+kind: AviInfraSetting
+metadata:
+  name: my-infra-setting
+spec:
+  seGroup:
+    name: compact-se-group
+  network:
+    vipNetworks:
+      - networkUUID: dvportgroup-2167-cloud-d4b24fc7-a435-408d-af9f-150229a6fea6f
+        cidr: 10.10.10.0/24
+        v6cidr: 2002::1234:abcd:ffff:c0a8:101/64
+    nodeNetworks:
+      - networkName: node-network-10-10-20-0-24
+        cidrs:
+        - 10.10.20.0/24
+    enableRhi: true
+    listeners:
+      - port: 8081
+        enableHTTP2: false
+        enableSSL: false
+      - port: 6443
+        enableSSL: true
+    bgpPeerLabels:
+      - peer1
+      - peer2
+  l7Settings:
+    shardSize: MEDIUM
+  nsxSettings:
+    t1lr: /infra/tier1/tier1_974b13d5-9f68-4be8-8149-a48a5686a3ef

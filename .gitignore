@@ -1,0 +1,9 @@
+# ignore ALL .DataStore files
+.DS_Store
+.gitignore
+# ignore .terraform
+.terraform*
+terraform.tfstate
+
+# ignore terraform env file
+.env*

@@ -1,0 +1,23 @@
+apiVersion: ako.vmware.com/v1beta1
+kind: HTTPRule
+metadata:
+   name: my-http-rule
+   namespace: purple-l7
+spec:
+  fqdn: foo.avi.internal
+  paths:
+  - target: /foo
+    applicationPersistence: cookie-userid-persistence
+    healthMonitors:
+    - my-health-monitor-1
+    - my-health-monitor-2
+    loadBalancerPolicy:
+      algorithm: LB_ALGORITHM_CONSISTENT_HASH
+      hash: LB_ALGORITHM_CONSISTENT_HASH_SOURCE_IP_ADDRESS
+    tls: ## This is a re-encrypt to pool
+      type: reencrypt # Mandatory [re-encrypt]
+      sslProfile: avi-ssl-profile
+      destinationCA:  |-
+        -----BEGIN CERTIFICATE-----
+        [...]
+        -----END CERTIFICATE-----

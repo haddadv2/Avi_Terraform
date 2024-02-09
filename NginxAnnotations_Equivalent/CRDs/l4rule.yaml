@@ -1,0 +1,47 @@
+  apiVersion: ako.vmware.com/v1alpha2
+  kind: L4Rule
+  metadata:
+    name: my-l4-rule
+    namespace: green
+  spec:
+    analyticsProfileRef: Custom-Analytics-Profile
+    analyticsPolicy:
+      fullClientLogs:
+        enabled: true
+        duration: 0
+        throttle: 30
+    applicationProfileRef: Custom-L4-Application-Profile
+    loadBalancerIP: "49.20.193.207"
+    performanceLimits:
+      maxConcurrentConnections: 105
+      maxThroughput: 100
+    networkProfileRef: Custom-Network-Profile
+    networkSecurityPolicyRef: Custom-Network-Security-Policy
+    securityPolicyRef: Custom-Security-Policy
+    vsDatascriptRefs:
+    - Custom-DS-01
+    - Custom-DS-02
+    backendProperties:
+    - port: 80
+      protocol: TCP
+      enabled: true
+      applicationPersistenceProfileRef: Custom-Application-Persistence-Profile
+      healthMonitorRefs:
+      - Custom-HM-01
+      - Custom-HM-02
+      lbAlgorithm: LB_ALGORITHM_CONSISTENT_HASH
+      lbAlgorithmHash: LB_ALGORITHM_CONSISTENT_HASH_CUSTOM_HEADER
+      lbAlgorithmConsistentHashHdr: "custom-string"
+      sslProfileRef: Custom-SSL-Profile
+      sslKeyAndCertificateRef: Custom-Key-And-Certificate
+      pkiProfileRef: Custom-PKI-Profile
+      analyticsPolicy:
+        enableRealtimeMetrics: true
+      minServersUp: 1
+    listenerProperties:
+    - port: 80
+      protocol: TCP
+      enableSsl: true
+    sslKeyAndCertificateRefs:
+    - "Custom-L4-SSL-Key-Cert"
+    sslProfileRef: Custom-L4-SSL-Profile
