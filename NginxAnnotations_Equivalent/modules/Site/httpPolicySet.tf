@@ -1,6 +1,6 @@
 resource "avi_httppolicyset" "rewriteTarget_policySet" {
     name       = var.http_policy_set["name"]
-    tenant_ref = data.avi_tenant.tenanID.id
+    tenant_ref = data.avi_tenant.tenantID.id
     http_request_policy {
         rules {
             enable = "true"

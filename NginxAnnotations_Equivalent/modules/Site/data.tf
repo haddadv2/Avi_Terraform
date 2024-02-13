@@ -1,4 +1,4 @@
-data "avi_tenant" "tenanID" {
+data "avi_tenant" "tenantID" {
   name= var.tenant_ref
  }
 

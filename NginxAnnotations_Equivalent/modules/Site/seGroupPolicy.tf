@@ -10,6 +10,6 @@ resource "avi_serviceenginegroup" "sg1" {
     max_cpu_usage                  = var.seGroup["max_cpu_usage"]
     min_cpu_usage                  = var.seGroup["min_cpu_usage"]
     name                           = var.seGroup["name"]
-    tenant_ref                     = data.avi_tenant.tenanID.id
+    tenant_ref                     = data.avi_tenant.tenantID.id
 
 }

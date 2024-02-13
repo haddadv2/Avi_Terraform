@@ -1,6 +1,6 @@
 resource "avi_applicationpersistenceprofile" "cookie_profile_1" {
     name = var.cookie_profile["name"]
-    tenant_ref = data.avi_tenant.tenanID.id
+    tenant_ref = data.avi_tenant.tenantID.id
     is_federated = false
     persistence_type = "PERSISTENCE_TYPE_HTTP_COOKIE"
     http_cookie_persistence_profile {

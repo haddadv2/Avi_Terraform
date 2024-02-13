@@ -1,7 +1,7 @@
 resource "avi_applicationprofile" "system_https_profile_1" {
     type = "APPLICATION_PROFILE_TYPE_HTTP"
     name = var.http_profile["name"] 
-    tenant_ref = data.avi_tenant.tenanID.id
+    tenant_ref = data.avi_tenant.tenantID.id
     http_profile {
         connection_multiplexing_enabled= true
         xff_enabled= true

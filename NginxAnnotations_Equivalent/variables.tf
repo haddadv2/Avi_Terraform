@@ -1,10 +1,14 @@
 variable "avi_username" {
+    default = ""
 }
 variable "avi_password" {
+    default = ""
 }
 variable "avi_version" {
+    default = ""
 }
 variable "avi_controller_ip" {
+    default = ""
 }
 
 # Credentials for Avi clusters in different sites
@@ -103,7 +107,7 @@ available AutoScale Criteria:
  https://docs.vmware.com/en/VMware-NSX-Advanced-Load-Balancer/22.1/Configuration_Guide/GUID-7E1B17D9-E301-4C41-BF65-0FD545409FA7.html#GUID-7E1B17D9-E301-4C41-BF65-0FD545409FA7__id-f1d596b0-0c05-469d-e5eb-136c3d7f62d8
  
 */     
-variable seGroup {
+variable "seGroup" {
     type = map(string)
     default = {
          name = "Default_Group"
@@ -112,7 +116,35 @@ variable seGroup {
          auto_rebalance_criteria = "SE_AUTO_REBALANCE_PPS"
          auto_rebalance_capacity_per_se = "20000000"
          max_cpu_usage= "70"
+         min_cpu_usage = "20"    
+        }
+  
+}
+
+variable seGroups {
+    type = list(map(string))
+    default = [
+        # Site 1 SE group config 
+        {
+         name = "Default_Group"
+         cloud_ref  = "Default_Cloud"
+         auto_rebalance = "true"
+         auto_rebalance_criteria = "SE_AUTO_REBALANCE_PPS"
+         auto_rebalance_capacity_per_se = "20000000"
+         max_cpu_usage= "70"
          min_cpu_usage = "20"
            
-    }
+        },
+        # Site 2 SE group config 
+        {
+         name = "Default_Group"
+         cloud_ref  = "Default_Cloud"
+         auto_rebalance = "true"
+         auto_rebalance_criteria = "SE_AUTO_REBALANCE_PPS"
+         auto_rebalance_capacity_per_se = "20000000"
+         max_cpu_usage= "70"
+         min_cpu_usage = "20"
+           
+        }
+    ]
 }
