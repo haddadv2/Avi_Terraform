@@ -77,16 +77,6 @@ available AutoScale Criteria:
  
 */
 
- seGroup = {
-         name = "Default_Group"
-         cloud_ref  = "Default_Cloud"
-         tenant_ref = "admin"
-         auto_rebalance = "true"
-         auto_rebalance_criteria = "SE_AUTO_REBALANCE_PPS"
-         auto_rebalance_capacity_per_se = "20000000"
-         max_cpu_usage= "70"
-         min_cpu_usage = "20"
-         }
 
  seGroups = [
    {
