@@ -5,7 +5,7 @@ module "controller_site_1" {
     avi_password   = var.sites[0].avi_password
     avi_controller_ip = var.sites[0].avi_controller_ip
     avi_version    = var.sites[0].avi_version
-    seGroup = var.seGroups[0]
+    seGroup = var.seGroups.site1
 }
 
 module "controller_site_2" {
@@ -14,6 +14,6 @@ module "controller_site_2" {
     avi_password   = var.sites[1].avi_password
     avi_controller_ip = var.sites[1].avi_controller_ip
     avi_version    = var.sites[1].avi_version
-    seGroup = var.seGroups[1]
+    seGroup = var.seGroups.site2
 }
 

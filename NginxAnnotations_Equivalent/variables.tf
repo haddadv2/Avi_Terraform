@@ -108,8 +108,8 @@ available AutoScale Criteria:
  
 */     
 variable "seGroup" {
-    type = map(string)
-    default = {
+    type = list(map(string))
+    default = [{
          name = "Default_Group"
          cloud_ref  = "Default_Cloud"
          auto_rebalance = "true"
@@ -118,13 +118,15 @@ variable "seGroup" {
          max_cpu_usage= "70"
          min_cpu_usage = "20"    
         }
+    ]
   
 }
 
 variable seGroups {
-    type = list(map(string))
-    default = [
-        # Site 1 SE group config 
+    type = map(list(map(string)))
+    default = { 
+         site1 = [
+        # Site 1 SE group 1 config 
         {
          name = "Default_Group"
          cloud_ref  = "Default_Cloud"
@@ -135,7 +137,75 @@ variable seGroups {
          min_cpu_usage = "20"
            
         },
-        # Site 2 SE group config 
+        # Site 1 SE group 2 config 
+        {
+         name = "Default_Group"
+         cloud_ref  = "Default_Cloud"
+         auto_rebalance = "true"
+         auto_rebalance_criteria = "SE_AUTO_REBALANCE_PPS"
+         auto_rebalance_capacity_per_se = "20000000"
+         max_cpu_usage= "70"
+         min_cpu_usage = "20"
+           
+        },
+             # Site 1 SE group 3 config 
+        {
+         name = "Default_Group"
+         cloud_ref  = "Default_Cloud"
+         auto_rebalance = "true"
+         auto_rebalance_criteria = "SE_AUTO_REBALANCE_PPS"
+         auto_rebalance_capacity_per_se = "20000000"
+         max_cpu_usage= "70"
+         min_cpu_usage = "20"
+           
+        },
+        # Site 1 SE group 4 config 
+        {
+         name = "Default_Group"
+         cloud_ref  = "Default_Cloud"
+         auto_rebalance = "true"
+         auto_rebalance_criteria = "SE_AUTO_REBALANCE_PPS"
+         auto_rebalance_capacity_per_se = "20000000"
+         max_cpu_usage= "70"
+         min_cpu_usage = "20"
+           
+        }
+    ],
+        site2 = [
+        # Site 12 SE group 1 config 
+        {
+         name = "Default_Group"
+         cloud_ref  = "Default_Cloud"
+         auto_rebalance = "true"
+         auto_rebalance_criteria = "SE_AUTO_REBALANCE_PPS"
+         auto_rebalance_capacity_per_se = "20000000"
+         max_cpu_usage= "70"
+         min_cpu_usage = "20"
+           
+        },
+        # Site 2 SE group 2 config 
+        {
+         name = "Default_Group"
+         cloud_ref  = "Default_Cloud"
+         auto_rebalance = "true"
+         auto_rebalance_criteria = "SE_AUTO_REBALANCE_PPS"
+         auto_rebalance_capacity_per_se = "20000000"
+         max_cpu_usage= "70"
+         min_cpu_usage = "20"
+           
+        },
+        # Site 2 SE group 3 config 
+        {
+         name = "Default_Group"
+         cloud_ref  = "Default_Cloud"
+         auto_rebalance = "true"
+         auto_rebalance_criteria = "SE_AUTO_REBALANCE_PPS"
+         auto_rebalance_capacity_per_se = "20000000"
+         max_cpu_usage= "70"
+         min_cpu_usage = "20"
+           
+        },
+        # Site 2 SE group 4 config 
         {
          name = "Default_Group"
          cloud_ref  = "Default_Cloud"
@@ -147,4 +217,7 @@ variable seGroups {
            
         }
     ]
+    }
 }
+
+
